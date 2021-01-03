@@ -1,30 +1,24 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="p-3">
+    <div class="mx-auto max-w-screen-lg flex items-center justify-center">
+      <router-link to="/" class="mx-2 btn">Home</router-link>
+      <router-link to="/all" class="mx-2 btn">All Quotes</router-link>
+    </div>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { useStore } from 'vuex';
+import { onMounted } from 'vue';
 
-#nav {
-  padding: 30px;
-}
+export default {
+  setup () {
+    const store = useStore();
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+    onMounted(() => {
+      store.commit('GetAllQuotes');
+    });
+  }
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
